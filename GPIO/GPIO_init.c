@@ -52,3 +52,19 @@ void init_GPIO_portF(void)
 	//clear the data reg
 	GPIO_PORTF_DATA_R&=~0x02;
 }
+
+void Seven_Segment(uint32_t distance)
+{
+	uint32_t H = 0;
+	uint32_t T = 0;
+	uint32_t U = 0;
+	H = distance/100;
+	T = (distance-(100*H))/10;
+	U = distance - (100*H)-(10*T);
+	H<<=4;
+	U<<=4;
+	
+	GPIO_PORTA_DATA_R |= U;
+	GPIO_PORTB_DATA_R |= T;
+	GPIO_PORTB_DATA_R |= H;
+}
