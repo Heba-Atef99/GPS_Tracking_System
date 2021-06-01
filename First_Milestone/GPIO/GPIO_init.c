@@ -1,5 +1,8 @@
 #include "GPIO_init.h"
 
+#define RED 0x2;
+#define OFF 0x0;
+
 void init_GPIO_portA(void)
 {
 	//to enable portA
@@ -53,6 +56,7 @@ void init_GPIO_portF(void)
 	GPIO_PORTF_DATA_R&=~0x02;
 }
 
+//display distance on 7 segments 
 void Seven_Segment(uint32_t distance)
 {
 	uint32_t H = 0;
@@ -67,4 +71,19 @@ void Seven_Segment(uint32_t distance)
 	GPIO_PORTA_DATA_R |= U;
 	GPIO_PORTB_DATA_R |= T;
 	GPIO_PORTB_DATA_R |= H;
+}
+
+//turn on led if distance is >= 100 meter
+void led_100distance (uint32_t distance)
+{
+	if(distance >= 100)
+	{
+		//turn on led
+		GPIO_PORTF_DATA_R = RED;
+	}
+	else
+	{
+		//turn off led
+		GPIO_PORTF_DATA_R = OFF;
+	}
 }
