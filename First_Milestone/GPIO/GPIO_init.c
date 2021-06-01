@@ -59,18 +59,29 @@ void init_GPIO_portF(void)
 //display distance on 7 segments 
 void Seven_Segment(uint32_t distance)
 {
-	uint32_t H = 0;
-	uint32_t T = 0;
-	uint32_t U = 0;
-	H = distance/100;
-	T = (distance-(100*H))/10;
-	U = distance - (100*H)-(10*T);
+	GPIO_PORTB_DATA_R =0;
+	uint32_t H = distance/100;
+	uint32_t T = (distance-(100*H))/10;
+	uint32_t U = distance - (100*H)-(10*T);
 	H<<=4;
+	T<<=4;
 	U<<=4;
-	
-	GPIO_PORTA_DATA_R |= U;
+	// Units on pin 0
+	GPIO_PORTB_DATA_R |= 0x01;
+	GPIO_PORTB_DATA_R |= U;
+	GPIO_PORTB_DATA_R &= ~0x01;
+  GPIO_PORTB_DATA_R &= ~0xF0;
+	// Tens on pin 1
+	GPIO_PORTB_DATA_R |= 0x02;
 	GPIO_PORTB_DATA_R |= T;
+	GPIO_PORTB_DATA_R &= ~0x02;
+	GPIO_PORTB_DATA_R &= ~0xF0;
+
+	// Hundreds on pin 2
+	GPIO_PORTB_DATA_R |= 0x04;
 	GPIO_PORTB_DATA_R |= H;
+	GPIO_PORTB_DATA_R &= ~0x04;
+	GPIO_PORTB_DATA_R &= ~0xF0;
 }
 
 //turn on led if distance is >= 100 meter
