@@ -1,6 +1,6 @@
 #include "stdint.h"
-#include "GPIO/GPIO_init.h"
-#include "Timer/Timer_init.h"
+#include "GPIO/GPIO.h"
+#include "Timer/Timer.h"
 
 
 void SystemInit()
