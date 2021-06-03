@@ -10,8 +10,7 @@ void SystemInit()
 	init_GPIO_portB();
 	init_GPIO_portF();
 	
-	//initialize Timer
-	init_timer();
+	
 }
 	
 int main()

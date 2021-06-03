@@ -1,4 +1,5 @@
 #include "GPIO.h"
+#include "../Timer/Timer.h"
 
 #define RED 0x2;
 #define OFF 0x0;
@@ -59,30 +60,29 @@ void init_GPIO_portF(void)
 //display distance on 7 segments 
 void Seven_Segment(uint32_t distance)
 {
-	
 	uint32_t H = distance/100;
 	uint32_t T = (distance-(100*H))/10;
 	uint32_t U = distance - (100*H)-(10*T);
-	GPIO_PORTB_DATA_R =0;
 	H<<=4;
-	T<<=4;
+  T<<=4;
 	U<<=4;
-	// Units on pin 0
-	GPIO_PORTB_DATA_R |= 0x01;
-	GPIO_PORTB_DATA_R |= U;
-	GPIO_PORTB_DATA_R &= ~0x01;
-  GPIO_PORTB_DATA_R &= ~0xF0;
-	// Tens on pin 1
-	GPIO_PORTB_DATA_R |= 0x02;
-	GPIO_PORTB_DATA_R |= T;
-	GPIO_PORTB_DATA_R &= ~0x02;
-	GPIO_PORTB_DATA_R &= ~0xF0;
-
-	// Hundreds on pin 2
-	GPIO_PORTB_DATA_R |= 0x04;
-	GPIO_PORTB_DATA_R |= H;
-	GPIO_PORTB_DATA_R &= ~0x04;
-	GPIO_PORTB_DATA_R &= ~0xF0;
+		GPIO_PORTB_DATA_R = 0x0F;
+		// Units on pin 0
+		GPIO_PORTB_DATA_R &= ~0x01; // enable
+		GPIO_PORTB_DATA_R |= U;
+	  Systick_Wait_Multiples_1ms(10); // delay
+		GPIO_PORTB_DATA_R =0x0F; // disable
+		// Tens on pin 1
+		GPIO_PORTB_DATA_R &= ~0x02; // enable
+		GPIO_PORTB_DATA_R |= T;
+	  Systick_Wait_Multiples_1ms(10); // delay
+		GPIO_PORTB_DATA_R =0x0F; // disable
+		// Hundreds on pin 2
+		GPIO_PORTB_DATA_R &= ~0x04; // enable
+		GPIO_PORTB_DATA_R |= H;
+	  Systick_Wait_Multiples_1ms(10); // delay 
+		GPIO_PORTB_DATA_R =0x0F; // disable
+		
 }
 
 //turn on led if distance is >= 100 meter
