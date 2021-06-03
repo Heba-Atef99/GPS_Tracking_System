@@ -1,22 +1,17 @@
 #include "Timer.h"
-
-void init_timer (void)
+void Systick_Wait_1ms ()
 {
-	// disable the timer during setup
-	NVIC_ST_CTRL_R=0;
-	//reset the reload with the max value
-	NVIC_ST_RELOAD_R=0x00FFFFFF;
-	//clear the current reg
+	NVIC_ST_CTRL_R = 0;
+	NVIC_ST_RELOAD_R = 16000-1;
 	NVIC_ST_CURRENT_R=0;
-	// enable the clock of the processor 
-	NVIC_ST_CTRL_R=0x05;
-}
-//delay function
-
-void delay(uint32_t time)
+	NVIC_ST_CTRL_R = 0x05;
+	while((NVIC_ST_CTRL_R & 0x00010000)==0){}
+}	
+void Systick_Wait_Multiples_1ms(uint32_t time)
 {
-	while(time)
+	uint32_t i;
+	for(i=0;i<time;i++)
 	{
-		time--;
+		Systick_Wait_1ms();
 	}
 }
