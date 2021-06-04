@@ -1,5 +1,7 @@
 #include "stdint.h"
 #include "math.h"
+#include <stdio.h>	
+#include <string.h>
 #include "tm4c123gh6pm.h"
 
 #define PI 3.14159265358979323846
