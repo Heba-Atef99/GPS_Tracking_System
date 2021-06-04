@@ -8,9 +8,9 @@ void UART_init(void)
 	SYSCTL_RCGCGPIO_R|=(1<<5);
 	//disable UART_7 during setup
 	UART7_CTL_R&=~00000001;
-	//The 2 registers adjusting the Baudrate of 115200 assuming 80 MHz bus clock
-	UART7_IBRD_R=43;
-	UART7_FBRD_R=26;
+	//The 2 registers adjusting the Baudrate of 9600 assuming 80 MHz bus clock
+	UART7_IBRD_R=520;
+	UART7_FBRD_R=53;
 	//8 bits data, no parity, one stop bit
 	UART7_LCRH_R=0x00000070;
 	//enable the UART
