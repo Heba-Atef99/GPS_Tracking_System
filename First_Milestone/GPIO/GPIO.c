@@ -70,17 +70,17 @@ void Seven_Segment(uint32_t distance)
 		// Units on pin 0
 		GPIO_PORTB_DATA_R &= ~0x01; // enable
 		GPIO_PORTB_DATA_R |= U;
-	  Systick_Wait_Multiples_1ms(10); // delay
+	  Systick_Wait_Multiples_1ms(1); // delay
 		GPIO_PORTB_DATA_R =0x0F; // disable
 		// Tens on pin 1
 		GPIO_PORTB_DATA_R &= ~0x02; // enable
 		GPIO_PORTB_DATA_R |= T;
-	  Systick_Wait_Multiples_1ms(10); // delay
+	  Systick_Wait_Multiples_1ms(1); // delay
 		GPIO_PORTB_DATA_R =0x0F; // disable
 		// Hundreds on pin 2
 		GPIO_PORTB_DATA_R &= ~0x04; // enable
 		GPIO_PORTB_DATA_R |= H;
-	  Systick_Wait_Multiples_1ms(10); // delay 
+	  Systick_Wait_Multiples_1ms(1); // delay 
 		GPIO_PORTB_DATA_R =0x0F; // disable
 		
 }
