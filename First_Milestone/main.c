@@ -20,7 +20,9 @@ int main()
 	
 	while(1)
 	{
-		/*// Test case 1
+		//Try one case at a time
+		
+		// Test case 1
 		// Distance = 165.26
 		lat1 = nmea_to_map(3003.918);
 		lng1 = nmea_to_map(03116.622);
@@ -30,7 +32,7 @@ int main()
 		Seven_Segment(y1);
 		
 		
-		// Test case 2
+		/*// Test case 2
 		// Distance = 58.07
 		lat1 = nmea_to_map(5231.446);
 		lng1 = nmea_to_map(01324.735);
@@ -40,7 +42,7 @@ int main()
 		Seven_Segment(y2);
 		*/
 		
-		// Test case 3
+		/*// Test case 3
 		// Distance = 17.7
 		lat1 = nmea_to_map(2901.286);
 		lng1 = nmea_to_map(00930.556);
@@ -48,6 +50,6 @@ int main()
 		lng2 = nmea_to_map(00930.564);
 		y3 = distance_calc(lat1, lat2, lng1, lng2);
 		Seven_Segment(y3);
-		
+		*/
   }
 }
