@@ -33,10 +33,6 @@ int distance_calc(float lat1, float lat2, float lng1, float lng2){
 	//longitutes and latitudes according to Haversine Formula
 	float dLat, dLng, a, c;
 	int d;
-	lat1 = nmea_to_map(lat1);
-	lat2 = nmea_to_map(lat2);
-	lng1 = nmea_to_map(lng1);
-	lng2 = nmea_to_map(lng2);
 	dLat = rad(lat2 - lat1); 
 	dLng = rad(lng2 - lng1);
 	
