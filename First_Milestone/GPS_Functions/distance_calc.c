@@ -18,3 +18,24 @@ int distance_calc(float lat1, float lat2, float lng1, float lng2){
 	
 	return d;
 }
+int Convert_fun(char str [],char N [],char S []){
+	//String str = String. valueOf(text);
+	char dest[100];
+	char dest2[100];
+	//char N[100];
+	//char S[100];
+	//char n [] ="$GPGLL,3003.91254,N,03116.81201,E,163727.00,A,A*6B";
+	size_t size;
+	char *ret;
+  const char ch = ',';
+	//size = sizeof(str);
+  ret = memchr(str , ch, strlen(str ));
+  strcpy(dest, ret+1);
+	//strncpy(dest, dest, 18);
+	ret = memchr(dest , ch, strlen(dest ));
+	strncpy(N, dest, 10);
+  ret = memchr(dest , ch, strlen(dest ));
+  strcpy(dest, ret+3);
+  strncpy(S, dest, 11);	
+	return 0;
+}
