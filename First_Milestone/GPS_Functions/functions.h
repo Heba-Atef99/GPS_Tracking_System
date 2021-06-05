@@ -1,6 +1,6 @@
 #include "stdint.h"
 #include "math.h"
-#include "tm4c123gh6pm.h"
+#include "../tm4c123gh6pm.h"
 
 #define PI 3.14159265358979323846
 #define R 6378137

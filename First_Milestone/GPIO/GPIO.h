@@ -1,5 +1,5 @@
 #include "stdint.h"
-#include "C:/Keil/TExaSware/tm4c123gh6pm.h"
+#include "../tm4c123gh6pm.h"
 
 void init_GPIO_portA(void);
 void init_GPIO_portB(void);
