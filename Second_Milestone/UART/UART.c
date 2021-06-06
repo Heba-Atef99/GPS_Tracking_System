@@ -1,13 +1,19 @@
 #include "UART.h"
+#define GPIO_PA10_M 0x03
 
 void UART_init(void)
-{
-	//activate UART_7
-	SYSCTL_RCGCUART_R|=(1<<7);
-	while ((SYSCTL_RCGCUART_R &(0x40))==0){}
+{	
 	//activate PORT_E
-	SYSCTL_RCGCGPIO_R|=(1<<5);
-	while ((SYSCTL_RCGCGPIO_R&(0x10)) ==0){}
+		SYSCTL_RCGCUART_R|=SYSCTL_RCGCUART_R7;
+	SYSCTL_RCGCGPIO_R|=SYSCTL_RCGCGPIO_R4;
+
+	
+	//SYSCTL_RCGCGPIO_R|=(1<<5);
+//				while ((SYSCTL_PRGPIO_R&(0x10)) ==0){};
+	//activate UART_7
+	//SYSCTL_RCGCUART_R|=(1<<7);
+		//while ((SYSCTL_RCGCUART_R &(0x40))==0){};
+
 	//disable UART_7 during setup
 	UART7_CTL_R&=~00000001;
 	//The 2 registers adjusting the Baudrate of 9600 assuming 80 MHz bus clock
@@ -25,5 +31,6 @@ void UART_init(void)
 	GPIO_PORTE_PCTL_R=(GPIO_PORTE_PCTL_R &0xFFFFFF00)+ 0x00000011;
 	//disable the analog of port E
 	GPIO_PORTE_AMSEL_R&=~0x03;
-	
 }
+
+
