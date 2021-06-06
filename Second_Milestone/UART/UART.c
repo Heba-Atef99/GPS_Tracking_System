@@ -33,4 +33,16 @@ void UART_init(void)
 	GPIO_PORTE_AMSEL_R&=~0x03;
 }
 
+uint8_t UART7_Available(void){
+	return ((UART7_FR_R&UART_FR_RXFE) == UART_FR_RXFE) ? 0 : 1;
+}
 
+uint8_t UART7_Read(void){
+	while(UART7_Available() != 1);
+	return (uint8_t)(UART7_DR_R&0xFF);
+}
+
+void UART7_Write(uint8_t data){
+	while((UART7_FR_R&UART_FR_TXFF) != 0);
+	UART7_DR_R = data;
+}
