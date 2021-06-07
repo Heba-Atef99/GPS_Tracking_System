@@ -16,6 +16,9 @@ void SystemInit()
 
 int main(void)
 {
+		// To start when switch 2 is ON
+	while((GPIO_PORTF_DATA_R & 0x01) ==1){};
+		
 	while(1)
 	{
 		//read from gps
@@ -24,5 +27,9 @@ int main(void)
 		
 		//wait a second
 		Systick_Wait_Multiples_1ms(1000);
+		
+		// to finish when switch 1 in on
+		if((GPIO_PORTF_DATA_R & 0X10) ==0)
+			break;
 	}
 }
