@@ -106,4 +106,12 @@ void led_100distance (uint32_t distance)
 		GPIO_PORTF_DATA_R = OFF;
 	}
 }
-
+void led_finish(void)
+{
+	// blue led on
+	GPIO_PORTF_DATA_R |= 0x04;
+	// delay 2 seconds
+	Systick_Wait_Multiples_1ms(2000);
+	// blue led off
+	GPIO_PORTF_DATA_R &= ~0x04;
+}

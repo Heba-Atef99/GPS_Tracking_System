@@ -26,6 +26,7 @@ int main(void)
   result= Convert_fun(str,N,S);
 	val = atof(N);
 	val2=atof(S);*/
+	
 		// To start when switch 2 is ON
 	while((GPIO_PORTF_DATA_R & 0x01) ==1){};
 		
@@ -42,4 +43,6 @@ int main(void)
 		if((GPIO_PORTF_DATA_R & 0X10) ==0)
 			break;
 	}
+	// turn blue led on and off when finished
+	led_finish();
 }
