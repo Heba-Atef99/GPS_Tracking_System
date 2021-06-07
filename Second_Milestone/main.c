@@ -16,6 +16,16 @@ void SystemInit()
 
 int main(void)
 {
+   /*test convert function
+   float val,val2;
+   char str[] = "$GPGLL,3003.91254,N,03116.81201,E,163727.00,A,A*6B";
+	char str[] = "$GPGLL,,,,,,.91254,N,03116.81201,E,163727.00,A,A*6B";
+   char N[20];
+	 char S[20];
+	uint8_t result;
+  result= Convert_fun(str,N,S);
+	val = atof(N);
+	val2=atof(S);*/
 		// To start when switch 2 is ON
 	while((GPIO_PORTF_DATA_R & 0x01) ==1){};
 		
