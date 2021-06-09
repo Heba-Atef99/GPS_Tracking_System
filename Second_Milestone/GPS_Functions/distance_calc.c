@@ -29,7 +29,7 @@ void gps_read(char gps_line[100])
 	while (1)
 	{
 			gps_line[i] = read_UART7();
-			write_UART0(gps_line[i]);
+			//write_UART0(gps_line[i]);
 			i++;
 			if(gps_line[i - 2] == 0x0D && gps_line[i - 1] == 0x0A)
 			{
@@ -39,5 +39,17 @@ void gps_read(char gps_line[100])
 				}
 				i = 0;
 			}			
+	}
+}
+
+void convert_putty (float a)
+{
+	int i=0;
+	char buffer[32];
+	//memcpy (c,&a,32);
+	int ret = snprintf(buffer, sizeof buffer, "%f", a);
+	for (i=0;i<ret;i++)
+	{
+		write_UART0(buffer[i]);
 	}
 }
