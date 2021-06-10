@@ -28,17 +28,23 @@ void gps_read(char gps_line[100])
 	int i = 0;
 	while (1)
 	{
-			gps_line[i] = read_UART7();
-			//write_UART0(gps_line[i]);
-			i++;
-			if(gps_line[i - 2] == 0x0D && gps_line[i - 1] == 0x0A)
+		gps_line[i] = read_UART7();
+		//if you want to display the gps readings on putty uncomment the following line
+		//write_UART0(gps_line[i]);
+		i++;
+		if (i >= 2)
+		{
+			//if we have reached the end of the line in gps readings
+			if (gps_line[i - 2] == 0x0D && gps_line[i - 1] == 0x0A)
 			{
-				if(gps_line[4] == 'L' && gps_line[5] == 'L')
+				if (gps_line[4] == 'L' && gps_line[5] == 'L')
 				{
 					break;
 				}
+				//to overwrite the values in the array
 				i = 0;
-			}			
+			}		
+		}			
 	}
 }
 
@@ -48,7 +54,7 @@ void convert_putty (float a)
 	char buffer[32];
 	//memcpy (c,&a,32);
 	int ret = snprintf(buffer, sizeof buffer, "%f", a);
-	for (i=0;i<ret;i++)
+	for (i = 0; i < ret; i++)
 	{
 		write_UART0(buffer[i]);
 	}
