@@ -5,7 +5,7 @@
 void init_UART0(void){
 	SYSCTL_RCGCUART_R |= SYSCTL_RCGCUART_R0;
 	SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0;
-	while((SYSCTL_PRGPIO_R&0x00000010) == 0){};
+	
 	UART0_CTL_R &= ~UART_CTL_UARTEN;
 	UART0_IBRD_R = 104;    
   UART0_FBRD_R = 11;
@@ -37,6 +37,7 @@ void init_UART7(void)
 	//activate PORT_E
 	SYSCTL_RCGCUART_R |= SYSCTL_RCGCUART_R7;
 	SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R4;
+	while((SYSCTL_PRGPIO_R&0x00000010) == 0){};
 	//disable UART_7 during setup
 	UART7_CTL_R &=~ 0x00000001;
 	//The 2 registers adjusting the Baudrate of 9600 assuming 80 MHz bus clock
